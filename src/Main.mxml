@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<s:WindowedApplication xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark"
+                       xmlns:mx="library://ns.adobe.com/flex/mx" width="200" height="295" currentState="basic">
+
+    <fx:Style>
+        @namespace s "library://ns.adobe.com/flex/spark";
+        s|TextInput {
+            borderStyle:none;
+            color:red;
+        }
+
+    </fx:Style>
+    <fx:Script><![CDATA[
+        import mx.controls.Alert;
+
+        private var i:int = 0;
+
+        private function button1_clickHandler(event:MouseEvent):void {
+            if (this.i == 0) {
+                this.height = 350;
+                i = 1;
+            }
+            else {
+                this.height = 300;
+                i = 0;
+            }
+        }
+
+        private function btn1_mouseOverHandler(event:MouseEvent):void {
+            this.btn1.setStyle("chromeColor", 0x47c6ee);
+        }
+
+        private function btn1_mouseOutHandler(event:MouseEvent):void {
+            this.btn1.setStyle("chromeColor","white");
+        }
+        ]]></fx:Script>
+
+    <s:states>
+        <s:State name="basic" />
+        <s:State name="exten"></s:State>
+    </s:states>
+    <s:states>
+        <s:State name="h300"></s:State>
+        <s:State name="h350"></s:State>
+    </s:states>
+
+
+    <s:VGroup horizontalAlign="center" horizontalCenter="0" top="20">
+        <s:HGroup height="150">
+            <s:Image source.basic="images\1.jpg" source.exten="images\2.jpg" click="currentState=(currentState=='basic'?'exten':'basic')"></s:Image>
+        </s:HGroup>
+        <s:HGroup>
+            <s:TextInput styleName="txt" prompt="QQ号码"   ></s:TextInput>
+        </s:HGroup>
+        <s:HGroup>
+            <s:TextInput  styleName="txt" prompt="QQ密码"></s:TextInput>
+        </s:HGroup>
+        <s:HGroup height="20"></s:HGroup>
+        <s:HGroup>
+           <s:Button id="btn1"  minWidth="10" width="30" height="10" label="展开"
+                     click="button1_clickHandler(event)" mouseOver="btn1_mouseOverHandler(event)" mouseOut="btn1_mouseOutHandler(event)"></s:Button>
+        </s:HGroup>
+
+        <s:BorderContainer backgroundColor="#28a1da" width="100%"  height="150">
+            <s:VGroup>
+                <s:HGroup>
+                    <s:CheckBox label="记住密码" useHandCursor="true"></s:CheckBox>
+                    <mx:LinkButton label="忘记密码"></mx:LinkButton>
+                </s:HGroup>
+                <s:HGroup>
+                    <s:CheckBox label="自动登录" useHandCursor="true"></s:CheckBox>
+                    <mx:LinkButton label="注册账号"></mx:LinkButton>
+                </s:HGroup>
+            </s:VGroup>
+
+        </s:BorderContainer>
+    </s:VGroup>
+</s:WindowedApplication>
